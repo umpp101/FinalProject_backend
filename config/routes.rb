@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
+  resources :messages
   resources :conversations
   resources :follows
-  resources :messages
   resources :comments
   resources :categories
   resources :posts
