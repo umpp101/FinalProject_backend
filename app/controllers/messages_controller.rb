@@ -18,4 +18,38 @@ class MessagesController < ApplicationController
         render json: {messages: messages}   
     end
 
+    def create
+        message = message.new(message_params)
+        # message.user_id = current_user.id
+        # message.conversation_id = params[:conversation_id]
+        if message.save
+            render json: {messages: messages}
+        else
+            render json: {error: "Something went wrong"}
+        end
+    end
+
+    
+    def show
+        message = Message.find(params[:id])
+        render json: {message: message}
+    end
+
+
+    def destroy
+        message = Message.find(params[:id])
+        if message.destroy
+            render json: {message: "Successfully deleted message"}
+        else
+            render json: {error: "Something went wrong"}
+        end
+    end
+  
+
+
+    private
+  
+    def message_params
+        params.require(:message).permit(:body, :conversation_id, :user_id)
+    end
 end
