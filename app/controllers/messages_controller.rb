@@ -5,18 +5,20 @@ class MessagesController < ApplicationController
 #     render json: ConversationSerializer.new(conversation, {include: [:messages]}) 
 #     end
 
-    def index
-    # messages = conversation.messages
-    # if messages.last
-    #   if messages.last.user_id != current_user.id
-    #     messages.last.read = true;
-    #   end
+
+    # def index
+    # # messages = conversation.messages
+    # # if messages.last
+    # #   if messages.last.user_id != current_user.id
+    # #     messages.last.read = true;
+    # #   end
+    # # end
+    # # message = conversation.messages.new
+    #     # messages = Message.all
+    #     conversation = Conversation.find(params[:conversation_id])
+    # # render json: {messages: messages} , :include => [:user]
+    #     render json: {messages: conversation.messages}   
     # end
-    # message = conversation.messages.new
-        messages = Message.all
-    # render json: {messages: messages} , :include => [:user]
-        render json: {messages: messages}   
-    end
 
     def create
         message = message.new(message_params)
@@ -31,6 +33,7 @@ class MessagesController < ApplicationController
 
     
     def show
+        byebug
         message = Message.find(params[:id])
         render json: {message: message}
     end

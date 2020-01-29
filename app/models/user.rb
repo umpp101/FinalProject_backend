@@ -12,10 +12,25 @@ class User < ApplicationRecord
     # returns an array of other users who the user has followed
     has_many :followings, through: :given_follows, source: :followed_user
   
-  
+
+
+    has_many :sender_conversations, foreign_key: :sender_id, class_name: "Conversation"
+    has_many :receiver_conversations, foreign_key: :receiver_id, class_name: "Conversation"
+
+
+    has_many :senders, through: :sender_conversations, source: :sender
+    has_many :receivers, through: :receiver_conversations, source: :receiver
+
+    has_many :sender_messages, through: :sender_conversations, source: :messages
+    has_many :receiver_messages, through: :receiver_conversations, source: :messages
+
+    def conversations
+        sender_conversations + receiver_conversations
+    end
+
+
     has_many :posts
     has_many :comments
-    has_many :conversations, foreign_key: :sender_id
     has_many :messages
   end
   

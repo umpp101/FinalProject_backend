@@ -3,18 +3,17 @@ class UsersController < ApplicationController
     def index
         # byebug
         users = User.all
-        render json: {users: users}
-        # render json: UserSerializer.new(users, {except: [:password_digest]})
+        render json: {users: users} , :include => [:conversations]
     end
 
     def show
         user = User.find(params[:id])
-        render json: {user: user}
-        # render json: {users: users} , :include => [:posts]
-        # render json: {users: users} , :include => [:comments]
-        # render json: {users: users} , :include => [:conversations]
-        # render json: {users: users} , :include => [:messages]
-        # render json: {users: users} , :include => [:follows]
+        # render json: {user: user}
+        # render json: {user: user} , :include => [:posts]
+        # render json: {user: user} , :include => [:comments]
+        render json: {user: user} , :include => [:conversations, :posts, :comments]
+        # render json: {user: user} , :include => [:messages]
+        # render json: {user: user} , :include => [:follows]
     end
 
     def edit

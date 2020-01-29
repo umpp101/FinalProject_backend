@@ -1,8 +1,10 @@
 class CommentsController < ApplicationController
     
     def index
-        comments = Comment.all
-        render json: {comments: comments}
+        # byebug
+        # comments = Comment.all
+        post = Post.find(params[:post_id])
+        render json: {comments: post.comments}
     end
 
     def create

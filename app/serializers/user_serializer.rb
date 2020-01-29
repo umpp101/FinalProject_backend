@@ -5,8 +5,8 @@ class UserSerializer
   has_many :messages
   has_many :comments
 
-  has_many :sender_conversations
-  has_many :receiver_conversations
+  has_many :conversations
+
   
   has_many :received_follows
   has_many :given_follows
