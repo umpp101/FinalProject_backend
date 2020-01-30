@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_secure_password
+    
     # Will return an array of follows for the given user instance
     has_many :received_follows, foreign_key: :followed_user_id, class_name: "Follow"
   
@@ -26,6 +28,10 @@ class User < ApplicationRecord
 
     def conversations
         sender_conversations + receiver_conversations
+    end
+
+    def conversation_ids
+        conversations.map{|el| el.id}
     end
 
 

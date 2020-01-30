@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+
+    skip_before_action :authorized
+    
     def index 
         # posts = Post.all.order('created_at DESC')
         user = User.find(params[:user_id])

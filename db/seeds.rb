@@ -3,7 +3,7 @@ require 'faker'
 5.times do 
     User.create!(
         user_name: Faker::Internet.username,
-        password_digest: Faker::Name.initials,
+        password: "hey",
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
         age:rand(23..60),
