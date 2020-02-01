@@ -6,12 +6,7 @@ require 'faker'
         password: "hey",
         first_name: Faker::Name.first_name,
         last_name: Faker::Name.last_name,
-        age:rand(23..60),
-        bio: Faker::Quote.matz,
-        admin: Faker::Boolean.boolean,
-        gender: ['Male', 'Female'].sample,
-        city: Faker::Address.city,
-        country: Faker::Address.country,
+        bio: Faker::Quote.matz
     )
 end
 

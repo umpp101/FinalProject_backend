@@ -1,6 +1,6 @@
 class UserSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :user_name, :first_name, :last_name, :age, :bio, :admin, :gender, :city, :country
+  attributes :user_name, :first_name, :last_name, :bio
   has_many :posts
   has_many :messages
   has_many :comments
