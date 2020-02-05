@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :follows
   resources :comments
   resources :categories
+  resources :posts
 
   resources :users do
     resources :posts do
