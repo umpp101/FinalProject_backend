@@ -43,3 +43,4 @@ gem 'faker'
 gem 'fast_jsonapi'
 gem "active_model_serializers"
 gem "jwt"
+gem "will_paginate"

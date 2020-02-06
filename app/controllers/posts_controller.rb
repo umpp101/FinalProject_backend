@@ -3,12 +3,19 @@ class PostsController < ApplicationController
     skip_before_action :authorized
     
     def index 
-        posts = Post.all.order('created_at DESC')
-        render json: {posts: posts}
-        # user = User.find(params[:user_id])
-        # render json: {posts: user.posts} , :include => [:comments]
-        
+        # posts = Post.all.order('created_at DESC')
+        # render json: {posts: posts}
+        # posts = Post.all.order('name ASC')
+        posts = Post.paginate(:page => params[:page])
+        render json: {
+            posts: posts,
+            page: posts.current_page,
+            #returns a number of the current page(int)
+            pages: posts.total_pages
+            #returns a number of the total page count(int)
+          }
     end
+
 
     def create
         post = Post.new(post_params)    
