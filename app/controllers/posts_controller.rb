@@ -13,7 +13,7 @@ class PostsController < ApplicationController
     def create
         post = Post.new(post_params)    
         if post.save
-        render json: {posts: posts} , :include => [:comments]
+        render json: {post: post} , :include => [:comments]
         else
             render json: {error: "Something went wrong"}
         end
