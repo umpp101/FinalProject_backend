@@ -9,11 +9,12 @@ class CommentsController < ApplicationController
     end
 
     def create
+        # byebug
         comment = Comment.new(comment_params)
         # comment.user_id = current_user.id
         # comment.post_id = params[:post_id]
         if comment.save
-            render json: {comments: comments}
+            render json: {comment: comment}
         else
             render json: {error: "Something went wrong"}
         end

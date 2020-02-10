@@ -6,3 +6,6 @@ class ChangeTitleToBeTextInPosts < ActiveRecord::Migration[6.0]
     change_column :posts, :title, :string
   end
 end
+
+
+

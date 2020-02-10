@@ -6,14 +6,14 @@ class PostsController < ApplicationController
         # posts = Post.all.order('created_at DESC')
         # render json: {posts: posts}
         # posts = Post.all.order('name ASC')
-        posts = Post.paginate(:page => params[:page])
+        posts = Post.paginate(:page => params[:page]).order('created_at DESC')
         render json: {
             posts: posts,
             page: posts.current_page,
             #returns a number of the current page(int)
             pages: posts.total_pages
             #returns a number of the total page count(int)
-          }
+          },  :include => [:comments]
     end
 
 
