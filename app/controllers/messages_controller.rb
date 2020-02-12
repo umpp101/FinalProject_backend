@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
 #     end
 
 
-    # def index
+    def root
     # # messages = conversation.messages
     # # if messages.last
     # #   if messages.last.user_id != current_user.id
@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     #     conversation = Conversation.find(params[:conversation_id])
     # # render json: {messages: messages} , :include => [:user]
     #     render json: {messages: conversation.messages}   
-    # end
+    end
 
     def create
         message = message.new(message_params)

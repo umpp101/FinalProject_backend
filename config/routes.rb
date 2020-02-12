@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  resources :messages
-  resources :conversations
+
   resources :follows
   resources :comments
   resources :categories
@@ -17,6 +16,9 @@ Rails.application.routes.draw do
       resources :messages
     end
   end
+
+  # root to: 'messages#root'
+  mount ActionCable.server, at: '/cable'
 
   post '/login', to: 'auth#create'
   post '/signup',to: 'users#create'
