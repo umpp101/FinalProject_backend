@@ -15,9 +15,11 @@ class ChatChannel < ApplicationCable::Channel
     message = Message.create!(data["message"])
     # message = Message.create(message_params)
     socket = { true_message: message }
-    
     # ^ this is a hash, becuz ction Cable only allows you to broadcast objects. Broadcasting a string will throw an error.
-    ActionCable.server.broadcast('chat_channel', socket)
+    
+    # need the conversation ID here so we know which channel to stream to
+    ActionCable.server.broadcast("chat_#{data["message"]["conversation_id"]}", socket)
+    
   end
 
   def create(opts)
@@ -25,6 +27,18 @@ class ChatChannel < ApplicationCable::Channel
       body: opts.fetch('body')
     )
   end
+
+  def convo_connector(data)
+    #we are trying to loop through a user convos and stream accordingly to each convo
+    user_id = JSON.parse(data['message'])['user_id']
+    user = User.find(user_id)
+    user.conversations.each do |convo|
+      stream_from "chat_#{convo.id}"
+    end
+
+    # byebug
+  end
+
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
